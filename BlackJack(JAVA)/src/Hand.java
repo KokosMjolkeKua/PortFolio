@@ -49,4 +49,8 @@ public class Hand {
             System.out.println(c);
         }
     }
+
+    public List<Card> getCards(){
+        return cards;
+    }
 }

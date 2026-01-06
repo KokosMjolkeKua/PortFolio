@@ -1,5 +1,6 @@
-public class Main {
+import static javax.swing.JOptionPane.*;
 
+public class Main {
     public static void main(String[] args) {
 
         Dealer dealer = new Dealer();
@@ -15,45 +16,53 @@ public class Main {
             dealer.dealToPlayer(player);
             dealer.dealToPlayer(player);
             dealer.dealToSelf();
+            dealer.dealToSelf();
 
-            // Dealer hits until 17+
-            while (dealer.getHand().getValue() < 17) {
-                dealer.dealToSelf();
+            showMessageDialog(null,
+                    "Your Hand:\n" + handToString(player));
+
+            // PLAYER TURN
+            playerTurn(player, dealer);
+
+            if (player.getHand().getValue() <= 21) {
+                dealerTurn(dealer);
             }
 
-            System.out.println("Player Hand:");
-            player.showHand();
-            System.out.println("Value: " + player.getHand().getValue());
+            // SHOW HANDS
+            showMessageDialog(null,
+                    "Your Final Hand:\n" + handToString(player) +
+                            "\n\nDealer Hand:\n" + handToString(dealer));
 
-            System.out.println("\nDealer Hand:");
-            dealer.getHand().showHand();
-            System.out.println("Value: " + dealer.getHand().getValue());
-
+            // Finish round
             int playerValue = player.getHand().getValue();
             int dealerValue = dealer.getHand().getValue();
 
-
-            //Need to change so this is not in the main,
-            //Add it as a seperate class because now its not very clean
-
             if (playerValue > 21) {
-                System.out.println("Player busts!");
+                showMessageDialog(null, "You Lost!");
                 player.loseBet();
             } else if (dealerValue > 21 || playerValue > dealerValue) {
-                System.out.println("Player wins!");
+                showMessageDialog(null, "You win!");
                 player.winBet();
             } else if (playerValue == dealerValue) {
-                System.out.println("Push!");
+                showMessageDialog(null, "Push!");
                 player.pushBet();
             } else {
-                System.out.println("Dealer wins!");
+                showMessageDialog(null, "Dealer wins!");
                 player.loseBet();
             }
 
-            System.out.println("Player money: " + player.getMoney());
-            System.out.println("--------------------------");
+            int again = showConfirmDialog(
+                    null,
+                    "Play another round?\nMoney: " + player.getMoney(),
+                    "Continue",
+                    YES_NO_OPTION
+            );
+
+            if (again != YES_OPTION) {
+                break;
+            }
         }
 
-        System.out.println("Game Over");
+        showMessageDialog(null, "Game Over!");
     }
 }
