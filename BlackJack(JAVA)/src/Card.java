@@ -15,6 +15,7 @@ public class Card {
         return value;
     }
 
+    //tostring to present the card
     @Override
     public String toString() {
         return value + " of " + suit;

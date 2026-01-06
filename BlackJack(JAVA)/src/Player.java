@@ -5,6 +5,8 @@ public class Player {
     private int currentBet;
     private Hand hand;
 
+    //Want to create one more advances so you can start by making your own character
+
     public Player(String name, int startingMoney) {
         this.name = name;
         this.money = startingMoney;
@@ -56,3 +58,6 @@ public class Player {
         hand.showHand();
     }
 }
+
+//With the button functions i need to see if i can make one that takes the values of hit, check, bet
+//So that i dont need to write it.

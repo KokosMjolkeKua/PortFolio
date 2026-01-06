@@ -1,5 +1,9 @@
 public class Dealer {
 
+    //Need to be able to start the game,
+    //deal the cards
+    //maybe interact?
+
     private static int moneyPot = 100000;
 
     private Deck deck;
@@ -14,6 +18,7 @@ public class Dealer {
         moneyPot += amount;
     }
 
+    //Moneypot for the the bets to be placed when i add that
     public static int getMoneyPot() {
         return moneyPot;
     }
@@ -22,6 +27,7 @@ public class Dealer {
         return deck.dealCard();
     }
 
+    //Dealing to player
     public void dealToPlayer(Player player) {
         player.receiveCard(dealCard());
     }

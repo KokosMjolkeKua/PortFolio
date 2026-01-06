@@ -32,6 +32,10 @@ public class Main {
             int playerValue = player.getHand().getValue();
             int dealerValue = dealer.getHand().getValue();
 
+
+            //Need to change so this is not in the main,
+            //Add it as a seperate class because now its not very clean
+
             if (playerValue > 21) {
                 System.out.println("Player busts!");
                 player.loseBet();

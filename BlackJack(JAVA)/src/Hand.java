@@ -17,6 +17,7 @@ public class Hand {
         int total = 0;
         int aces = 0;
 
+        //Adding value to every card
         for (Card card : cards) {
             switch (card.getValue()) {
                 case "JACK":
@@ -41,6 +42,8 @@ public class Hand {
         return total;
     }
 
+    //showHand
+    //thinking of maybe changing it to be automatic if a certain set of numbers is set.
     public void showHand() {
         for (Card c : cards) {
             System.out.println(c);
