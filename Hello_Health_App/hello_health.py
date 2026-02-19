@@ -27,3 +27,24 @@ def greet(name):
 			
 
 greet(name)
+
+
+def track_sleep():
+	"""
+	Function to track the users sleep,
+	looking at the amount of hours and 
+	measuring up towards what is a healhty standard.
+	"""
+	hours=(input("How many hours did you sleep:  "))
+	try:
+		hours=float(hours)
+		if hours < 8:
+			print(f"With only {hours} hours of sleep, you will have less cognitive function and physical restoration than the average adult..")
+		elif hours > 7 and hours < 11:
+			print(f"With {hours} hours of sleep, you will restore your cognitive ability to a full, and restore your physical ability!")
+		else:
+			print(f"This is very good.. but there is a thing as too much sleep as well, if {hours} is your average..")		
+	except ValueError:
+		print(f"Error: '{hours}' is not a valid number.")
+
+track_sleep()		
