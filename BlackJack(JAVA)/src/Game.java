@@ -4,45 +4,52 @@ import static javax.swing.JOptionPane.*; //using the static version so i dont ha
 
 public class Game {
 
-    public static void PlayerTurn(Player player, Dealer dealer){
+    // Player turn using dialog choices
+    public static void playerTurn(Player player, Dealer dealer){
         while(true){
             int choice = showOptionDialog(
-                    null, "Your hand: " + player.getHand().getValue() +
-                            "\nHit or Stand?", "Your turn.",
+                    null,
+                    "Your hand:\n" + handToString(player) + "\nTotal: " + player.getHand().getValue() + "\n\nHit or Stand?",
+                    "Your turn.",
                     YES_NO_OPTION, QUESTION_MESSAGE, null, new String[]{"Hit", "Stand"},
                     "Hit"
             );
 
-            if(choice == 0){ //If you HIT
+            if(choice == 0){ // If you HIT
                 dealer.dealToPlayer(player);
 
-                if(player.getHand().getValue() > 21){ //if the value exceeds 21, you loos
-                    showMessageDialog(null, "You Loose...");
+                if(player.getHand().getValue() > 21){ // bust
+                    showMessageDialog(null, "You busted!");
                     break;
                 }
             }
-            else{ //In this case its stand
+            else{ // Stand
                 break;
             }
         }
     }
 
-
-
-    //showing the hand of the player(might reworke to always visible..)
-
+    // Convert a player's hand to a readable String
     public static String handToString(Player player){
+        return handToString(player.getHand());
+    }
+
+    // Convert a dealer's hand to a readable String
+    public static String handToString(Dealer dealer){
+        return handToString(dealer.getHand());
+    }
+
+    // Convert a Hand to string
+    public static String handToString(Hand hand){
         StringBuilder builder = new StringBuilder();
-        for(Card c: player.getHand().getValue()){
+        for(Card c: hand.getCards()){
             builder.append(c).append("\n");
         }
-
-        builder.append("\nCard: ").append(player.getHand().getValue());
+        builder.append("\nTotal: ").append(hand.getValue());
         return builder.toString();
     }
 
-
-    //Adding dealer mechanics, that are automatic (need to change the main as well)
+    // Dealer automated play
     public static void dealerTurn(Dealer dealer) {
         while (dealer.getHand().getValue() < 17) {
             dealer.dealToSelf();

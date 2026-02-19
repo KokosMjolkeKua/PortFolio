@@ -27,3 +27,7 @@ TO DO:
 - need to make an intro,
 - configure, hit, check and bet ++
 - add more players.
+
+
+START Mechanism:
+- enter Terminal: java -cp out Main

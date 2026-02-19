@@ -19,19 +19,19 @@ public class Main {
             dealer.dealToSelf();
 
             showMessageDialog(null,
-                    "Your Hand:\n" + handToString(player));
+                    "Your Hand:\n" + Game.handToString(player));
 
             // PLAYER TURN
-            playerTurn(player, dealer);
+            Game.playerTurn(player, dealer);
 
             if (player.getHand().getValue() <= 21) {
-                dealerTurn(dealer);
+                Game.dealerTurn(dealer);
             }
 
             // SHOW HANDS
             showMessageDialog(null,
-                    "Your Final Hand:\n" + handToString(player) +
-                            "\n\nDealer Hand:\n" + handToString(dealer));
+                    "Your Final Hand:\n" + Game.handToString(player) +
+                            "\n\nDealer Hand:\n" + Game.handToString(dealer));
 
             // Finish round
             int playerValue = player.getHand().getValue();
